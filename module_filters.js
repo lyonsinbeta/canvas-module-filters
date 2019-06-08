@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  if (window.location.pathname.includes("modules")) {
+  if ($("div.context_module").length > 0) {
 
     $("div.header-bar").append("<div><ul id='module_filters' style='list-style-type: none; display: inline;'></ul></div>");
 
