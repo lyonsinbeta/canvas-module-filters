@@ -1,66 +1,30 @@
 $(document).ready(function() {
   if (window.location.pathname.includes("modules")) {
+
     $("div.header-bar").append("<ul id='module_filters' style='list-style-type: none;'></ul>");
 
-    $("ul#module_filters").append("<li style='padding-right: 1em; display: inline-block;'><input type='checkbox' id='wiki_page' name='wiki_page' checked> <label for='wiki_page'>Pages</label></li>");
-    $("ul#module_filters").append("<li style='padding-right: 1em; display: inline-block;'><input type='checkbox' id='assignment' name='assignment' checked> <label for='assignment'>Assignments</label></li>");
-    $("ul#module_filters").append("<li style='padding-right: 1em; display: inline-block;'><input type='checkbox' id='quiz' name='quiz' checked> <label for='quiz'>Quizzes</label></li>");
-    $("ul#module_filters").append("<li style='padding-right: 1em; display: inline-block;'><input type='checkbox' id='discussion_topic' name='discussion_topic' checked> <label for='discussion_topic'>Discussions</label></li>");
-    $("ul#module_filters").append("<li style='padding-right: 1em; display: inline-block;'><input type='checkbox' id='external_url' name='external_url' checked> <label for='external_url'>Links</label></li>");
-    $("ul#module_filters").append("<li style='padding-right: 1em; display: inline-block;'><input type='checkbox' id='attachment' name='attachment' checked> <label for='attachment'>Files</label></li>");
+    var item_types = [{id: "wiki_page", label: "Pages", icon: "icon-document"},
+                      {id: "assignment", label: "Assignments", icon: "icon-assignment"},
+                      {id: "quiz", label: "Quizzes", icon: "icon-quiz"},
+                      {id: "discussion_topic", label: "Discussions", icon: "icon-discussion"},
+                      {id: "external_url", label: "Links", icon: "icon-link"},
+                      {id: "attachment", label: "Files", icon: "icon-paperclip"}];
 
-    $("#wiki_page").change(function() {
-      if (this.checked == true) {
-        $("li.wiki_page").show();
-      }
-      else {
-        $("li.wiki_page").hide();
-      }
-    });
+    item_types.forEach(function(type) {
+      var icon = `<i id="module_filter_${type['id']}" class="${type['icon']}" style="color: green;"></i>`;
 
-    $("#assignment").change(function() {
-      if (this.checked == true) {
-        $("li.assignment").show();
-      }
-      else {
-        $("li.assignment").hide();
-      }
-    });
+      $("ul#module_filters").append(`<li style="padding-right: 1em; display: inline-block;"><input type="checkbox" id="${type['id']}" name="${type['id']}" checked style="display: none;"> <label for="${type['id']}">${icon}</label></li>`);
 
-    $("#quiz").change(function() {
-      if (this.checked == true) {
-        $("li.quiz").show();
-      }
-      else {
-        $("li.quiz").hide();
-      }
-    });
-
-    $("#discussion_topic").change(function() {
-      if (this.checked == true) {
-        $("li.discussion_topic").show();
-      }
-      else {
-        $("li.discussion_topic").hide();
-      }
-    });
-
-    $("#external_url").change(function() {
-      if (this.checked == true) {
-        $("li.external_url").show();
-      }
-      else {
-        $("li.external_url").hide();
-      }
-    });
-
-    $("#attachment").change(function() {
-      if (this.checked == true) {
-        $("li.attachment").show();
-      }
-      else {
-        $("li.attachment").hide();
-      }
+      $("#" + type['id'] + "").change(function() {
+        if (this.checked == true) {
+          $("li." + type['id'] + "").show();
+          $("#module_filter_" + type['id']).css('color', 'green');
+        }
+        else {
+          $("li." + type['id'] + "").hide();
+          $("#module_filter_" + type['id']).css('color', '');
+        }
+      });
     });
   }
 });
