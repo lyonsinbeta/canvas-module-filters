@@ -8,7 +8,8 @@ $(document).ready(function() {
                       {id: "quiz", label: "Quizzes", icon: "icon-quiz"},
                       {id: "discussion_topic", label: "Discussion Topics", icon: "icon-discussion"},
                       {id: "external_url", label: "Links", icon: "icon-link"},
-                      {id: "attachment", label: "Files", icon: "icon-paperclip"}];
+                      {id: "attachment", label: "Files", icon: "icon-paperclip"},
+                      {id: "context_external_tool", label: "External Tools", icon: "icon-integrations"}];
 
     item_types.forEach(function(type) {
       var icon = `<i id="module_filter_${type['id']}" class="${type['icon']}" title="${type['label']}" style="color: green;"></i>`;
